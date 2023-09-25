@@ -505,4 +505,5 @@
     <string name="library">Библиотека</string>
     <string name="watch_quality_pref_data">Предпочитано качество за гледане (Мобилни данни)</string>
     <string name="start">Начало</string>
+    <string name="automatic_plugin_download_mode_title">Избери режим, да филтрира изтегляне на добавки</string>
 </resources>
