@@ -30,7 +30,9 @@ import com.lagradost.cloudstream3.extractors.CdnwishCom
 import com.lagradost.cloudstream3.extractors.Chillx
 import com.lagradost.cloudstream3.extractors.CineGrabber
 import com.lagradost.cloudstream3.extractors.Cinestart
+import com.lagradost.cloudstream3.extractors.CloudMailRu
 import com.lagradost.cloudstream3.extractors.ContentX
+import com.lagradost.cloudstream3.extractors.CsstOnline
 import com.lagradost.cloudstream3.extractors.D0000d
 import com.lagradost.cloudstream3.extractors.D000dCom
 import com.lagradost.cloudstream3.extractors.DBfilm
@@ -41,6 +43,7 @@ import com.lagradost.cloudstream3.extractors.DesuArcg
 import com.lagradost.cloudstream3.extractors.DesuDrive
 import com.lagradost.cloudstream3.extractors.DesuOdchan
 import com.lagradost.cloudstream3.extractors.DesuOdvip
+import com.lagradost.cloudstream3.extractors.Dhcplay
 import com.lagradost.cloudstream3.extractors.Dhtpre
 import com.lagradost.cloudstream3.extractors.Dokicloud
 import com.lagradost.cloudstream3.extractors.DoodCxExtractor
@@ -58,6 +61,7 @@ import com.lagradost.cloudstream3.extractors.DoodstreamCom
 import com.lagradost.cloudstream3.extractors.Dooood
 import com.lagradost.cloudstream3.extractors.Ds2play
 import com.lagradost.cloudstream3.extractors.Ds2video
+import com.lagradost.cloudstream3.extractors.DsstOnline
 import com.lagradost.cloudstream3.extractors.Dwish
 import com.lagradost.cloudstream3.extractors.EPlayExtractor
 import com.lagradost.cloudstream3.extractors.Embedgram
@@ -70,9 +74,7 @@ import com.lagradost.cloudstream3.extractors.FEnet
 import com.lagradost.cloudstream3.extractors.Fastream
 import com.lagradost.cloudstream3.extractors.FeHD
 import com.lagradost.cloudstream3.extractors.Fembed9hd
-import com.lagradost.cloudstream3.extractors.FileMoon
 import com.lagradost.cloudstream3.extractors.FileMoonIn
-import com.lagradost.cloudstream3.extractors.FileMoonSx
 import com.lagradost.cloudstream3.extractors.Filegram
 import com.lagradost.cloudstream3.extractors.Filesim
 import com.lagradost.cloudstream3.extractors.FlaswishCom
@@ -80,6 +82,7 @@ import com.lagradost.cloudstream3.extractors.FourCX
 import com.lagradost.cloudstream3.extractors.FourPichive
 import com.lagradost.cloudstream3.extractors.FourPlayRu
 import com.lagradost.cloudstream3.extractors.Fplayer
+import com.lagradost.cloudstream3.extractors.FsstOnline
 import com.lagradost.cloudstream3.extractors.GDMirrorbot
 import com.lagradost.cloudstream3.extractors.GMPlayer
 import com.lagradost.cloudstream3.extractors.GamoVideo
@@ -146,6 +149,7 @@ import com.lagradost.cloudstream3.extractors.Mvidoo
 import com.lagradost.cloudstream3.extractors.Mwish
 import com.lagradost.cloudstream3.extractors.MwvnVizcloudInfo
 import com.lagradost.cloudstream3.extractors.MyCloud
+import com.lagradost.cloudstream3.extractors.NathanFromSubject
 import com.lagradost.cloudstream3.extractors.Nekostream
 import com.lagradost.cloudstream3.extractors.Nekowish
 import com.lagradost.cloudstream3.extractors.Neonime7n
@@ -178,7 +182,9 @@ import com.lagradost.cloudstream3.extractors.Sbrapid
 import com.lagradost.cloudstream3.extractors.Sbsonic
 import com.lagradost.cloudstream3.extractors.Sbspeed
 import com.lagradost.cloudstream3.extractors.Sbthe
+import com.lagradost.cloudstream3.extractors.SecvideoOnline
 import com.lagradost.cloudstream3.extractors.Sendvid
+import com.lagradost.cloudstream3.extractors.Server1uns
 import com.lagradost.cloudstream3.extractors.SfastwishCom
 import com.lagradost.cloudstream3.extractors.ShaveTape
 import com.lagradost.cloudstream3.extractors.SibNet
@@ -298,6 +304,9 @@ import com.lagradost.cloudstream3.extractors.Zorofile
 import com.lagradost.cloudstream3.extractors.Zplayer
 import com.lagradost.cloudstream3.extractors.ZplayerV2
 import com.lagradost.cloudstream3.extractors.Ztreamhub
+import com.lagradost.cloudstream3.extractors.FileMoon
+import com.lagradost.cloudstream3.extractors.FileMoonSx
+import com.lagradost.cloudstream3.extractors.FilemoonV2
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -1079,6 +1088,7 @@ val extractorApis: MutableList<ExtractorApi> = arrayListOf(
     Guccihide(),
     FileMoon(),
     FileMoonSx(),
+    FilemoonV2(),
 
     Vido(),
     Linkbox(),
@@ -1145,6 +1155,7 @@ val extractorApis: MutableList<ExtractorApi> = arrayListOf(
     VidHidePro5(),
     VidHidePro6(),
     Dhtpre(),
+    Dhcplay(),
     Smoothpre(),
     Peytonepre(),
     LuluStream(),
@@ -1166,8 +1177,13 @@ val extractorApis: MutableList<ExtractorApi> = arrayListOf(
     Vidguardto1(),
     Vidguardto2(),
     Vidguardto3(),
+    SecvideoOnline(),
+    FsstOnline(),
+    CsstOnline(),
+    DsstOnline(),
     Simpulumlamerop(),
     Urochsunloath(),
+    NathanFromSubject(),
     Yipsu(),
     MetaGnathTuggers(),
     Geodailymotion(),
@@ -1206,9 +1222,10 @@ val extractorApis: MutableList<ExtractorApi> = arrayListOf(
     InternetArchive(),
     VidStack(),
     GDMirrorbot(),
-
+    Server1uns(),
     VinovoSi(),
     VinovoTo(),
+    CloudMailRu(),
 )
 
 
@@ -1294,7 +1311,7 @@ abstract class ExtractorApi {
     var sourcePlugin: String? = null
 
     //suspend fun getSafeUrl(url: String, referer: String? = null): List<ExtractorLink>? {
-    //    return suspendSafeApiCall { getUrl(url, referer) }
+    //    return safeAsync { getUrl(url, referer) }
     //}
 
     // this is the new extractorapi, override to add subtitles and stuff

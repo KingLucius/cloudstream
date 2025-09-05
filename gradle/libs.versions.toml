@@ -1,18 +1,18 @@
 [versions]
 acraCore = "5.12.0"
-appcompat = "1.7.0"
-biometric = "1.4.0-alpha03"
+appcompat = "1.7.1"
+biometric = "1.4.0-alpha04"
 buildkonfigGradlePlugin = "0.15.2"
 coil = "3.1.0"
-colorpicker = "1.1.0"
+colorpicker = "6b46b49bd5"
 conscryptAndroid = "2.5.2"
 constraintlayout = "2.2.1"
-coreKtx = "1.15.0"
+coreKtx = "1.16.0"
 desugar_jdk_libs_nio = "2.1.5"
 dokkaGradlePlugin = "2.0.0"
 espressoCore = "3.6.1"
 fuzzywuzzy = "1.4.0"
-gradle = "8.8.2"
+gradle = "8.9.3"
 jacksonModuleKotlin = "2.13.1"
 json = "20250107"
 junit = "4.13.2"
@@ -24,9 +24,9 @@ kotlinxCoroutinesCore = "1.10.1"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
 material = "1.12.0"
-media3 = "1.6.0"
+media3 = "1.6.1"
 navigationKtx = "2.8.9"
-newpipeextractor = "v0.24.4"
+newpipeextractor = "v0.24.6"
 nextlibMedia3 = "0.8.4"
 nicehttp = "0.4.13"
 overlappingpanels = "0.1.5"
@@ -58,7 +58,7 @@ biometric = { module = "androidx.biometric:biometric", version.ref = "biometric"
 buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "buildkonfigGradlePlugin" }
 coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
-colorpicker = { module = "com.jaredrummler:colorpicker", version.ref = "colorpicker" }
+colorpicker = { module = "com.github.recloudstream:color-picker-android", version.ref = "colorpicker" }
 conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 core = { module = "androidx.test:core" }

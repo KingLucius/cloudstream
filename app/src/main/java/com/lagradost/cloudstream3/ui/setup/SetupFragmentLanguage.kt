@@ -10,11 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
+import com.lagradost.cloudstream3.AcraApplication.Companion.setKey
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.CommonActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.FragmentSetupLanguageBinding
-import com.lagradost.cloudstream3.mvvm.normalSafeApiCall
+import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.plugins.PluginManager
 import com.lagradost.cloudstream3.ui.settings.appLanguages
 import com.lagradost.cloudstream3.ui.settings.getCurrentLocale
@@ -46,10 +47,10 @@ class SetupFragmentLanguage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // We don't want a crash for all users
-        normalSafeApiCall {
+        safe {
             fixPaddingStatusbar(binding?.setupRoot)
 
-            val ctx = context ?: return@normalSafeApiCall
+            val ctx = context ?: return@safe
             val settingsManager = PreferenceManager.getDefaultSharedPreferences(ctx)
 
             val arrayAdapter =
@@ -57,7 +58,7 @@ class SetupFragmentLanguage : Fragment() {
 
             binding?.apply {
                 // Icons may crash on some weird android versions?
-                normalSafeApiCall {
+                safe {
                     val drawable = when {
                         BuildConfig.DEBUG -> R.drawable.cloud_2_gradient_debug
                         BuildConfig.FLAVOR == "prerelease" -> R.drawable.cloud_2_gradient_beta
@@ -103,6 +104,7 @@ class SetupFragmentLanguage : Fragment() {
                 }
 
                 skipBtt.setOnClickListener {
+                    setKey(HAS_DONE_SETUP_KEY, true)
                     findNavController().navigate(R.id.navigation_home)
                 }
             }

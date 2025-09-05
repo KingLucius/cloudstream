@@ -84,8 +84,7 @@ class PlayerSubtitleHelper {
         allSubtitles = list
     }
 
-    private var subStyle: SaveCaptionStyle? = null
-    private var subtitleView: SubtitleView? = null
+    var subtitleView: SubtitleView? = null
 
     companion object {
         fun String.toSubtitleMimeType(): String {
@@ -104,7 +103,7 @@ class PlayerSubtitleHelper {
                 url = subtitleFile.url,
                 origin = SubtitleOrigin.URL,
                 mimeType = subtitleFile.url.toSubtitleMimeType(),
-                headers = emptyMap(),
+                headers = subtitleFile.headers ?: emptyMap(),
                 languageCode = subtitleFile.lang
             )
         }
@@ -121,16 +120,9 @@ class PlayerSubtitleHelper {
     }
 
     fun setSubStyle(style: SaveCaptionStyle) {
-        subStyle = style
         Log.i(TAG, "SET STYLE = $style")
-        setSubtitleViewStyle(subtitleView, style)
         subtitleView?.translationY = -style.elevation.toPx.toFloat()
-        val size = style.fixedTextSize
-        if (size != null) {
-            subtitleView?.setFixedTextSize(TypedValue.COMPLEX_UNIT_SP, size)
-        } else {
-            subtitleView?.setUserDefaultTextSize()
-        }
+        setSubtitleViewStyle(subtitleView, style)
     }
 
     fun initSubtitles(subView: SubtitleView?, subHolder: FrameLayout?, style: SaveCaptionStyle?) {
